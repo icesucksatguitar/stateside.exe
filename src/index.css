@@ -6,11 +6,20 @@ body{
   color: #fff;
   font-family: "Share Tech Mono", sans-serif;
   font-weight: 300;  
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+html,
+#root {
+  width: 100%;
+  min-height: 100%;
 }
 
 *{
   cursor: none;
-  overflow: hidden;
 }
 
 .custom-cursor {
@@ -33,7 +42,27 @@ body{
 .custom-cursor.pressed {
   width: 14px;
   height: 14px;
-  background-color: #fff;
+  background-color: transparent;
   transform: translate(-50%, -50%) scale(0.95);
+}
+
+.custom-cursor::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0;
+  transform: translateY(0);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease,
+    inset 140ms ease;
+}
+
+.custom-cursor.pressed::after {
+  opacity: 1;
+  inset: 3px;
+  transform: translateY(var(--reactor-drag-offset, 0px));
 }
 

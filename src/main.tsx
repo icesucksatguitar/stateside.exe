@@ -19,6 +19,10 @@ function AppRouter() {
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
+      if (document.body.classList.contains('reactor-dragging')) {
+        return;
+      }
+
       setCursorPosition({
         x: event.clientX,
         y: event.clientY,
